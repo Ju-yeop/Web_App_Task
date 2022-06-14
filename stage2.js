@@ -45,7 +45,7 @@ function stage2(){
                     strokeWeight(1);
                 }
                 fill("#5EC6D4");
-                rect(366 + (step * 50), 400 + (track * 53), 35, 40);
+                rect(366 + (step * 46.9), 400 + (track * 53), 33, 40);
                 noStroke();
             }
             else{
@@ -57,19 +57,24 @@ function stage2(){
                     stroke("#A6A6A6");
                     strokeWeight(1);
                 }
-                if(step < 5){
+                if(step < 4){
                     fill('#24252B');
-                    rect(366 + (step * 50), 400 + (track * 53), 35, 40);
+                    rect(366 + (step * 46.9), 400 + (track * 53), 33, 40);
                     noStroke();
                 }
-                else if(step < 10){
+                else if(step < 8){
                     fill("#383C3F");
-                    rect(366 + (step * 50), 400 + (track * 53), 35, 40);
+                    rect(366 + (step * 46.9), 400 + (track * 53), 33, 40);
                     noStroke();
                 }
-                else if(step < 15){
+                else if(step < 12){
                     fill('#24252B');
-                    rect(366 + (step * 50), 400 + (track * 53), 35, 40);
+                    rect(366 + (step * 46.9), 400 + (track * 53), 33, 40);
+                    noStroke();
+                }
+                else if(step < 16){
+                    fill("#383C3F");
+                    rect(366 + (step * 46.9), 400 + (track * 53), 33, 40);
                     noStroke();
                 }
             }
@@ -144,16 +149,17 @@ function stage2(){
     }
 
     savedraw();
+    keyDown();
 
 }
 
 
 function mousePressed(){
 	if(366<mouseX && mouseX<1136 && 400<mouseY && mouseY<714){
-        var temp_i = ((mouseX-366)/50) - (ceil((mouseX-366)/50)-1);
+        var temp_i = ((mouseX-366)/46.9) - (ceil((mouseX-366)/46.9)-1);
         var temp_j = ((mouseY-400)/53) - (ceil((mouseY-400)/53)-1);
         if(temp_i < 0.7 && temp_j < 0.755){
-            var i = floor((mouseX-366)/50);
+            var i = floor((mouseX-366)/46.9);
             var j = floor((mouseY-400)/53);
             cells[j][i] = -cells[j][i];
         }
@@ -225,23 +231,23 @@ function drawDrumEffect(){
     for(var i = 0; i<6 ; i++){
         if(drum_effect[i] == 'true'){
             if(i == 0){
-                tint(255, 100);
+                tint(255, 180);
                 image(illu_img[0], drum_pos[0][0], drum_pos[0][1], 76, 35);
                 image(illu_img[1], drum_pos[1][0], drum_pos[1][1], 94, 45);
             } else if(i == 1){
-                tint(255, 100);
+                tint(255, 120);
                 image(illu_img[2], drum_pos[i+1][0], drum_pos[i+1][1], 123, 42);
             } else if(i == 2){
-                tint(255, 100);
+                tint(255, 180);
                 image(illu_img[3], drum_pos[i+1][0], drum_pos[i+1][1], 114, 42);
             } else if(i == 3){
-                tint(255, 100);
+                tint(255, 180);
                 image(illu_img[4], drum_pos[i+1][0], drum_pos[i+1][1], 560, 230);
             } else if(i == 4){
-                tint(255, 100);
+                tint(255, 120);
                 image(illu_img[5], drum_pos[i+1][0], drum_pos[i+1][1], 157, 66);
             } else if(i == 5){
-                tint(255, 100);
+                tint(255, 180);
                 image(illu_img[6], drum_pos[i+1][0], drum_pos[i+1][1], 137, 26);
             }
             noTint();
@@ -315,6 +321,72 @@ function loadBeat(){
             for(var step=0; step<nSteps; step++){
                 cells[track][step] = memory[2][track][step];
             }
+        }
+    }
+}
+
+function keyDown(){
+    if(drum_judge == "true"){
+        if (keyIsDown(221)){
+            drum_effect[4] = "true";
+        }else{
+            drum_effect[4] = "false";
+        }
+        if (keyIsDown(219)){
+            drum_effect[5] = "true";
+        }else{
+            drum_effect[5] = "false";
+        }
+        if (keyIsDown(186)){
+            drum_effect[0] = "true";
+        }else{
+            drum_effect[0] = "false";
+        }
+        if (keyIsDown(81)){
+            drum_effect[1] = "true";
+        }else{
+            drum_effect[1] = "false";
+        }
+        if (keyIsDown(87)){
+            drum_effect[2] = "true";
+        }else{
+            drum_effect[2] = "false";
+        }
+        if (keyIsDown(68)){
+            drum_effect[3] = "true";
+        }else{
+            drum_effect[3] = "false";
+        }
+    }
+}
+
+function keyPressed(){
+    if(drum_judge == "true"){
+        if (key == ']'){
+            var dr = kit.get(drumNames[4]);
+            dr.start();
+        }
+        if (key == '['){
+            var dr = kit.get(drumNames[5]);
+            dr.start();
+            console.log(keyCode);
+        }
+        if (key == ';'){
+            var dr = kit.get(drumNames[0]);
+            dr.start();
+            console.log(keyCode);
+        }
+        if (key == 'q'){
+            var dr = kit.get(drumNames[1]);
+            dr.start();
+        }
+        if (key == 'w'){
+            var dr = kit.get(drumNames[2]);
+            dr.start();
+        }
+        if (key == 'd'){
+            var dr = kit.get(drumNames[3]);
+            dr.start();
         }
     }
 }

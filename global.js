@@ -2,7 +2,7 @@ var textx = 717;
 var texts = 40;
 var stage = 1;
 
-var nSteps = 15;
+var nSteps = 16;
 var nTracks = 6;
 var kit;
 var cellWidth, cellHeight;
