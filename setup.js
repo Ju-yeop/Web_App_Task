@@ -61,18 +61,18 @@ function draw() {
 }
 
 function scrollbar(xp, yp, sw, sh, l) {
-    this.swidth = sw; // width and height of bar
+    this.swidth = sw;
     this.sheight = sh;
     var widthtoheight = sw - sh;
     this.ratio = sw / widthtoheight;
-    this.xpos = xp; // x and y position of bar
+    this.xpos = xp;
     this.ypos = yp - this.sheight / 2;
-    this.spos = this.xpos + this.swidth / 2 - this.sheight / 2; // x position of slider
+    this.spos = this.xpos + this.swidth / 2 - this.sheight / 2;
     this.newspos = this.spos;
-    this.sposMin = this.xpos; // max and min values of slider
+    this.sposMin = this.xpos;
     this.sposMax = this.xpos + this.swidth - this.sheight;
-    this.loose = l; // how loose/heavy
-    this.over = false; // is the mouse over the slider?
+    this.loose = l;
+    this.over = false;
     this.locked = false;
 
     this.update = function() {
